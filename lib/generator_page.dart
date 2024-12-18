@@ -31,7 +31,7 @@ class GeneratorPage extends StatelessWidget {
                 icon: Icon(icon),
                 label: Text('Like'),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
