@@ -29,8 +29,15 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+    var history = <WordPair>[];
+
+    GlobalKey? historyListKey;
+
   // ↓ Add this.
   void getNext() {
+    history.insert(0, current);
+    var animatedList = historyListKey?.currentState as AnimatedListState?;
+    animatedList?.insertItem(0);
     current = WordPair.random();
     notifyListeners();
   }
@@ -45,7 +52,12 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+void removeFavorite(WordPair pair) {
+    favorites.remove(pair);
+    notifyListeners();
+  }
 }
+
 
 class MyHomePage extends StatefulWidget {
   @override
